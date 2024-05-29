@@ -1,6 +1,6 @@
-from tests.test_data.data_test_4_gui.data import Data
+from tests.test_data.data_gui.data import Data
 from src.gui_pages.auth_page import AuthPage as Auth
-from env_configs.env import ENV
+from env_configs.env_gui import ENV
 
 
 

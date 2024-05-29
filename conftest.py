@@ -3,6 +3,12 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import requests
+from tests.test_data.data_api.generator_wiki import CreateWiki
+from tests.test_data.data_api.generator_wiki import SearchWiki
+from env_configs.env_api import CLIENT_ID_ENV
+from env_configs.env_api import ENV
+from src.api_endpoits.wiki_endpoints import Wiki
+from self import self
 
 
 @pytest.fixture(scope='function')
@@ -15,16 +21,16 @@ def driver():
     driver.quit()
 
 
-@pytest.fixture()
+@pytest.fixture
 def access_token_admin():
     payload = {
         "username": "dpkappadmin",
         "password": "524598",
         "grant_type": "password",
-        "client_secret": "ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG",
+        "client_secret": CLIENT_ID_ENV,
         "client_id": "azk"
     }
-    url = "https://api.qa.azkts.ru/auth/realms/azkts/protocol/openid-connect/token"
+    url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
     r = requests.post(url, data=payload)
     return r.json()['access_token']
 
@@ -35,24 +41,24 @@ def access_token_diagnost():
         "username": "diagnostqa",
         "password": "524598",
         "grant_type": "password",
-        "client_secret": "ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG",
+        "client_secret": CLIENT_ID_ENV,
         "client_id": "azk"
     }
-    url = "https://api.qa.azkts.ru/auth/realms/azkts/protocol/openid-connect/token"
+    url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
     r = requests.post(url, data=payload)
     return r.json()['access_token']
 
 
 @pytest.fixture()
-def access_token_specilist():
+def access_token_specialist():
     payload = {
         "username": "specvtqa",
         "password": "524598",
         "grant_type": "password",
-        "client_secret": "ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG",
+        "client_secret": CLIENT_ID_ENV,
         "client_id": "azk"
     }
-    url = "https://api.qa.azkts.ru/auth/realms/azkts/protocol/openid-connect/token"
+    url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
     r = requests.post(url, data=payload)
     return r.json()['access_token']
 
@@ -63,10 +69,10 @@ def access_token_designer():
         "username": "konstqa",
         "password": "524598",
         "grant_type": "password",
-        "client_secret": "ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG",
+        "client_secret": CLIENT_ID_ENV,
         "client_id": "azk"
     }
-    url = "https://api.qa.azkts.ru/auth/realms/azkts/protocol/openid-connect/token"
+    url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
     r = requests.post(url, data=payload)
     return r.json()['access_token']
 
@@ -77,17 +83,17 @@ def access_token_assistant_vt_azk():
         "username": "qavt",
         "password": "524598",
         "grant_type": "password",
-        "client_secret": "ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG",
+        "client_secret": CLIENT_ID_ENV,
         "client_id": "azk"
     }
-    url = "https://api.qa.azkts.ru/auth/realms/azkts/protocol/openid-connect/token"
+    url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
     r = requests.post(url, data=payload)
     return r.json()['access_token']
 
 
 @pytest.fixture()
 def id_user_diagnost(access_token_diagnost):
-    url = "https://api.qa.azkts.ru/api/v1/users/me"
+    url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_diagnost}"}
     r = requests.get(url, headers=headers)
     print(r.json()['id'])
@@ -95,16 +101,16 @@ def id_user_diagnost(access_token_diagnost):
 
 
 @pytest.fixture()
-def id_user_specvt(access_token_specilist):
-    url = "https://api.qa.azkts.ru/api/v1/users/me"
-    headers = {"Authorization": f"Bearer {access_token_specilist}"}
+def id_user_specvt(access_token_specialist):
+    url = f"{ENV}/api/v1/users/me"
+    headers = {"Authorization": f"Bearer {access_token_specialist}"}
     r = requests.get(url, headers=headers)
     return r.json()["id"]
 
 
 @pytest.fixture()
 def id_user_designer(access_token_designer):
-    url = "https://api.qa.azkts.ru/api/v1/users/me"
+    url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_designer}"}
     r = requests.get(url, headers=headers)
     r_json = r.json()
@@ -116,7 +122,7 @@ def id_user_designer(access_token_designer):
 
 @pytest.fixture()
 def id_user_assistant_azk_vt(access_token_assistant_vt_azk):
-    url = "https://api.qa.azkts.ru/api/v1/users/me"
+    url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_assistant_vt_azk}"}
     r = requests.get(url, headers=headers)
     print(r.json()['id'])
@@ -136,7 +142,7 @@ def get_last_id_applications_vt(access_token_diagnost):
         ],
         "type": 1
     }
-    url = "https://api.qa.azkts.ru/api/v1/applications/list"
+    url = f"{ENV}/api/v1/applications/list"
     r = requests.post(url, headers=headers, json=payload)
     print(r.status_code)
     response = r.json()['data']
@@ -163,7 +169,7 @@ def get_list_applications_vt(access_token_admin):
         ],
         "type": 1
     }
-    url = "https://api.qa.azkts.ru/api/v1/applications/list"
+    url = f"{ENV}/api/v1/applications/list"
     r = requests.post(url, headers=headers, json=payload)
     response = r.json()['data']
     application_total_list = []
@@ -176,7 +182,7 @@ def get_list_applications_vt(access_token_admin):
 
 @pytest.fixture()
 def id_app_vt(access_token_diagnost):
-    url = "https://api.qa.azkts.ru/api/v1/applications/repair?auto_equipment=true"
+    url = f"{ENV}/api/v1/applications/repair?auto_equipment=true"
     headers = {"Authorization": f"Bearer {access_token_diagnost}"}
     body = {
 
@@ -198,7 +204,7 @@ def id_app_vt(access_token_diagnost):
 
 @pytest.fixture()
 def get_json_about_app(access_token_diagnost, get_last_id_applications_vt):
-    url = f"https://api.qa.azkts.ru/api/v1/applications/{get_last_id_applications_vt}"
+    url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}"
     headers = {"Authorization": f"Bearer {access_token_diagnost}"}
     r = requests.get(url, headers=headers)
     r_json = r.json()['repair']['attachments']
@@ -214,7 +220,7 @@ def get_json_about_app(access_token_diagnost, get_last_id_applications_vt):
 
 @pytest.fixture()
 def check_member_in_application(get_last_id_applications_vt, access_token_admin):
-    url = f"https://api.qa.azkts.ru/api/v1/applications/{get_last_id_applications_vt}"
+    url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}"
     headers = {"Authorization": f"Bearer {access_token_admin}"}
     r = requests.get(url, headers=headers)
     r_json = r.json()['repair']['members']
@@ -229,7 +235,7 @@ def check_member_in_application(get_last_id_applications_vt, access_token_admin)
 
 @pytest.fixture()
 def get_messages_in_chat(get_last_id_applications_vt, access_token_admin):
-    url = f"https://api.qa.azkts.ru/api/v1/applications/{get_last_id_applications_vt}"
+    url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}"
     headers = {"Authorization": f"Bearer {access_token_admin}"}
     r = requests.get(url, headers=headers)
     data = r.json()
@@ -243,7 +249,7 @@ def get_messages_in_chat(get_last_id_applications_vt, access_token_admin):
 
 @pytest.fixture()
 def get_sid(get_last_id_applications_vt, access_token_admin):
-    url = f"https://api.qa.azkts.ru/api/v1/applications/{get_last_id_applications_vt}"
+    url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}"
     headers = {"Authorization": f"Bearer {access_token_admin}"}
     r = requests.get(url, headers=headers)
     data = r.json()
@@ -265,7 +271,7 @@ def get_date_start_from_last_app_vt(access_token_admin):
         ],
         "type": 1
     }
-    url = "https://api.qa.azkts.ru/api/v1/applications/list"
+    url = f"{ENV}/api/v1/applications/list"
     r = requests.post(url, headers=headers, json=payload)
     response = r.json()['data']
     date_start_app = response[0]['date_start']
@@ -282,7 +288,7 @@ def get_date_start_from_last_app_vt(access_token_admin):
 
 @pytest.fixture()
 def take_prev_evaluations(access_token_admin, id_user_diagnost, get_date_start_from_last_app_vt):
-    url = f"https://api.qa.azkts.ru/api/v1/reports/report_user_rating_rae"
+    url = f"{ENV}/api/v1/reports/report_user_rating_rae"
     headers = {"Authorization": f"Bearer {access_token_admin}"}
     payload = {
                     "type": 1,
@@ -320,16 +326,65 @@ def take_prev_evaluations(access_token_admin, id_user_diagnost, get_date_start_f
         return oops
 
 
+# NEXT FUNCTION FOR APPLICATION WIKI
+@pytest.fixture
+def builder_wiki():
+    print(CreateWiki().build())
+    return CreateWiki()
+
+
+@pytest.fixture
+def builder_search_wiki():
+    print(SearchWiki().build())
+    return SearchWiki()
+
+
+@pytest.fixture
+def get_last_id_wiki_rae(access_token_admin):
+    url = f"{ENV}/api/v1/azk_wiki/list"
+    headers = {"Authorization": f"Bearer {access_token_admin}"}
+    payload = {
+            "limit": 20,
+            "page": 1,
+            "order_by": [
+                "-date_updated"
+            ],
+            "keywords": [],
+            "filters": {}
+    }
+
+    response = requests.post(url, headers=headers, json=payload)
+    response_json = response.json()
+    last = [i.get('id') for i in response_json['data']]
+    print(last[0])
+    return last[0]
+
+
+@pytest.fixture
+def get_id_attaches(access_token_admin):
+    return Wiki().get_id_attach_files_in_wiki(access_token_admin)[0]
+
+
+@pytest.fixture
+def get_download_link_wiki_azk(access_token_admin, get_last_id_wiki_rae):
+    url = f"{ENV}/api/v2/wiki/{get_last_id_wiki_rae}/get_download_link"
+    headers = {"Authorization": f"Bearer {access_token_admin}"}
+    self.response = requests.get(url, headers=headers)
+    self.response_json = self.response.json()
+    print(self.response_json.get('link_id'))
+    return self.response_json.get('link_id')
+
+
+@pytest.fixture
+def list_wiki_azk(access_token_admin):
+    url = f"{ENV}/api/v1/azk_wiki/list"
+    headers = {"Authorization": f"Bearer {access_token_admin}"}
+    payload = {"limit": 1,
+               "order_by": ["-date_updated"]
+               }
+    response = requests.post(url, headers=headers, json=payload)
+    response_json = response.json()
+    return response_json
 
 
 
-
-# @pytest.fixture(scope='session')
-# def data_admin(driver):
-#     authpage = AuthPage(driver,ENV)
-#     login = 'dpkappadmin'
-#     password =524598
-#     authpage.element_is_visable(LocatorsAuth.LOGIN).send_kyes(login)
-#     authpage.element_is_visable(LocatorsAuth.PASSWORD).send_keys(password)
-#     authpage.element_is_visable(LocatorsAuth.ENTER).click()
-#     yield driver

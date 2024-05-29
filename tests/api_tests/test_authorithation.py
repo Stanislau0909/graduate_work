@@ -2,7 +2,7 @@ import requests
 import pytest
 import json
 from src.api_endpoits.authorization import Authorization
-from tests.test_data.data_dicts_4_api.data_authorization import DataAuthorization
+from tests.test_data.data_api.generator_authorization import DataAuthorization
 
 
 class TestAuthorization:
