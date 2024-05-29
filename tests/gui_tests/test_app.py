@@ -1,6 +1,6 @@
 from src.gui_pages.application_page import Applicationpage as App
-from tests.test_data.data_test_4_gui.data import Data
-from env_configs.env import ENV
+from tests.test_data.data_gui.data import Data
+from env_configs.env_gui import ENV
 
 
 class TestApppage:
@@ -67,21 +67,4 @@ class TestApppage:
         app.send_messages_by_diagnostician()
         app.refresh_page()
         app.check_status_app_sending_message_from_diagnostician()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

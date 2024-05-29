@@ -1,7 +1,7 @@
 import requests
 
 from env_configs.env_api import ENV
-from tests.test_data.data_dicts_4_api.data_applications import DataApplication as Data
+from tests.test_data.data_api.generator_applications import DataApplication as Data
 
 
 class Applications:
@@ -229,4 +229,3 @@ class Applications:
 
     def close_app_from_admin(self):
         pass
-
