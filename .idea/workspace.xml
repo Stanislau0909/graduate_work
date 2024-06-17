@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="883052d3-105c-4fa8-abc7-69a88486b4b0" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="fill_in_readme_file" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../AQA_16_graduate_work/conftest.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2ey7KURjGYuBkQhdz45hfahERM1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Стас/Documents/AQA_16_graduate work&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Стас\Documents\AQA_16_graduate work\tests\api_tests\attachments" />
+      <recent name="C:\Users\Стас\Documents\AQA_16_graduate work" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Стас\Documents\AQA_16_graduate work\trash" />
+      <recent name="C:\Users\Стас\Documents\AQA_16_graduate work\trach" />
+      <recent name="C:\Users\Стас\Documents\AQA_16_graduate work" />
+      <recent name="C:\Users\Стас\Documents\AQA_16_graduate work\env_config" />
+      <recent name="C:\Users\Стас\Documents\AQA_16_graduate work\tests\test_data" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python tests.Python tests for test_applications.TestApplication.test_attach_file_to_application">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="AQA_16_graduate_work" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_applications.TestApplication.test_attach_file_to_application" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="AQA_16_graduate_work" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="C:\Users\Стас\Documents\AQA_16_graduate work\venv\Scripts\python.exe" />
+      <option name="SDK_NAME" value="Python 3.9 (AQA_16_graduate work)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../AQA_16_graduate_work/tests/api_tests" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_applications.TestApplication.test_attach_file_to_application&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_applications.TestApplication.test_create_app_with_invalid_data_field_defect_node" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="AQA_16_graduate_work" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../AQA_16_graduate_work/tests/api_tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_applications.TestApplication.test_create_app_with_invalid_data_field_defect_node&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for test_applications.TestApplication.test_send_file_in_chat_from_diagnostician" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="AQA_16_graduate_work" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../AQA_16_graduate_work/tests/api_tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;test_applications.TestApplication.test_send_file_in_chat_from_diagnostician&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.api_tests.test_applications.TestApplication.test_download_app_in_html" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="AQA_16_graduate_work" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../AQA_16_graduate_work/tests/api_tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.api_tests.test_applications.TestApplication.test_download_app_in_html&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.api_tests.test_applications.TestApplication.test_send_file_in_chat_from_diagnostician" type="tests" factoryName="Autodetect" temporary="true" nameIsGenerated="true">
+      <module name="AQA_16_graduate_work" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../AQA_16_graduate_work/tests/api_tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.api_tests.test_applications.TestApplication.test_send_file_in_chat_from_diagnostician&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.api_tests.test_wiki.TestWiki" type="tests" factoryName="Autodetect" nameIsGenerated="true">
+      <module name="AQA_16_graduate_work" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../AQA_16_graduate_work/tests/api_tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.api_tests.test_wiki.TestWiki&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Python tests for tests.api_tests.test_wiki.TestWiki.test_create_wiki_without_files" type="tests" factoryName="Autodetect" nameIsGenerated="true">
+      <module name="AQA_16_graduate_work" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../AQA_16_graduate_work/tests/api_tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests.api_tests.test_wiki.TestWiki.test_create_wiki_without_files&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.main" />
+      <item itemvalue="Python tests.Python tests for tests.api_tests.test_wiki.TestWiki" />
+      <item itemvalue="Python tests.Python tests for tests.api_tests.test_wiki.TestWiki.test_create_wiki_without_files" />
+      <item itemvalue="Python tests.Python tests for test_applications.TestApplication.test_attach_file_to_application" />
+      <item itemvalue="Python tests.Python tests for test_applications.TestApplication.test_create_app_with_invalid_data_field_defect_node" />
+      <item itemvalue="Python tests.Python tests for test_applications.TestApplication.test_send_file_in_chat_from_diagnostician" />
+      <item itemvalue="Python tests.Python tests for tests.api_tests.test_applications.TestApplication.test_download_app_in_html" />
+      <item itemvalue="Python tests.Python tests for tests.api_tests.test_applications.TestApplication.test_send_file_in_chat_from_diagnostician" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python tests.Python tests for test_applications.TestApplication.test_attach_file_to_application" />
+        <item itemvalue="Python tests.Python tests for test_applications.TestApplication.test_create_app_with_invalid_data_field_defect_node" />
+        <item itemvalue="Python tests.Python tests for test_applications.TestApplication.test_send_file_in_chat_from_diagnostician" />
+        <item itemvalue="Python tests.Python tests for tests.api_tests.test_applications.TestApplication.test_send_file_in_chat_from_diagnostician" />
+        <item itemvalue="Python tests.Python tests for tests.api_tests.test_applications.TestApplication.test_download_app_in_html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="883052d3-105c-4fa8-abc7-69a88486b4b0" name="Changes" comment="" />
+      <created>1712864899983</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712864899983</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../AQA_16_graduate_work/trash/for_play_with_json.py</url>
+          <line>64</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../AQA_16_graduate_work/trash/for_play_with_json.py</url>
+          <line>65</line>
+          <option name="timeStamp" value="79" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../AQA_16_graduate_work/trash/for_play_with_json.py</url>
+          <line>66</line>
+          <option name="timeStamp" value="80" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../AQA_16_graduate_work/tests/test_data/data_api/path_to_files.py</url>
+          <line>47</line>
+          <option name="timeStamp" value="260" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../AQA_16_graduate_work/tests/test_data/data_api/path_to_files.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="261" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../AQA_16_graduate_work/tests/test_data/data_api/path_to_files.py</url>
+          <line>49</line>
+          <option name="timeStamp" value="262" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../AQA_16_graduate_work/tests/test_data/data_api/path_to_files.py</url>
+          <line>51</line>
+          <option name="timeStamp" value="263" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../AQA_16_graduate_work/tests/test_data/data_api/path_to_files.py</url>
+          <line>50</line>
+          <option name="timeStamp" value="264" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="tests">
+        <watch expression="payload['description']" language="Python" />
+        <watch expression="files_list[0]" language="Python" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

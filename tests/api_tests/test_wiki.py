@@ -14,14 +14,14 @@ class TestWiki:
         self.wiki.check_types_data_in_create_wiki()
 
     @pytest.mark.parametrize("model", [
-        '1234567891234567891234567891231'
+        '1' * 31
     ])
     def test_create_wiki_invalid_data_field_model(self, access_token_specialist, builder_wiki, model):
         self.wiki.create_wiki_manual(jwt=access_token_specialist, payload=builder_wiki.set_model(model).build())
         self.wiki.check_status_is_422_Unprocessable_Entity()
 
     @pytest.mark.parametrize("custom_id", [
-        '1234567891'
+        '1' * 10
     ])
     def test_create_wiki_invalid_data_field_custom_id(self, access_token_specialist, builder_wiki, custom_id):
         self.wiki.create_wiki_manual(jwt=access_token_specialist, payload=builder_wiki.set_custom_id(custom_id).build())
@@ -80,11 +80,11 @@ class TestWiki:
         self.wiki.check_status_is_200ok()
         print(theme)
 
-
     def test_download_wiki_pdf(self, access_token_admin, get_last_id_wiki_rae):
         self.wiki.clean_downloaded_wiki()
         self.wiki.clean_downloaded_files_with_folder()
-        link_for_download = self.wiki.get_download_link_wiki_azk(access_token_admin=access_token_admin, get_last_id_wiki_rae=get_last_id_wiki_rae)
+        link_for_download = self.wiki.get_download_link_wiki_azk(access_token_admin=access_token_admin,
+                                                                 get_last_id_wiki_rae=get_last_id_wiki_rae)
         self.wiki.paste_link_for_download_pdf(get_download_link_wiki_azk=link_for_download)
         self.wiki.collect_files_which_were_downloading(expected_files=self.wiki.list_wiki_azk(access_token_admin))
         self.wiki.check_status_is_200ok()
@@ -92,7 +92,8 @@ class TestWiki:
     def test_download_wiki_html(self, access_token_admin, get_last_id_wiki_rae):
         self.wiki.clean_downloaded_wiki_html()
         self.wiki.clean_downloaded_files_with_folder_html()
-        link_for_download = self.wiki.get_download_link_wiki_azk(access_token_admin=access_token_admin, get_last_id_wiki_rae=get_last_id_wiki_rae)
+        link_for_download = self.wiki.get_download_link_wiki_azk(access_token_admin=access_token_admin,
+                                                                 get_last_id_wiki_rae=get_last_id_wiki_rae)
         self.wiki.paste_link_for_download_html(get_download_link_wiki_azk=link_for_download)
         self.wiki.collect_files_which_were_downloading_html(expected_files=self.wiki.list_wiki_azk(access_token_admin))
         self.wiki.check_status_is_200ok()
