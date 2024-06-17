@@ -11,6 +11,8 @@ docker-compose.yml
 requirements.txt
 \for_downloaded_files_wiki_html
 \for_downloaded_files_wiki
-for_downloaded_file_app_html
-for_downloaded_files_app_pdf
+\for_downloaded_file_app_html
+\for_downloaded_files_app_pdf
 /trash/
+tests/api_tests/for_downloaded_files_app_pdf/chat_attachments
+tests/api_tests/for_downloaded_files_app_pdf
