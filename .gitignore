@@ -1,0 +1,16 @@
+.pytest_cache/
+__pycache__/
+.gitignore
+venv/
+.git
+trash
+.env
+settings.py
+db/
+docker-compose.yml
+requirements.txt
+\for_downloaded_files_wiki_html
+\for_downloaded_files_wiki
+for_downloaded_file_app_html
+for_downloaded_files_app_pdf
+/trash/

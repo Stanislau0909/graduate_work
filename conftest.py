@@ -4,7 +4,13 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
 import requests
 from tests.test_data.data_api.generator_wiki import CreateWiki
+from tests.test_data.data_api.generator_applications import SendMessage
 from tests.test_data.data_api.generator_wiki import SearchWiki
+from tests.test_data.data_api.generator_applications import CreateAppVT
+from tests.test_data.data_api.generator_applications import Migration
+from tests.test_data.data_api.generator_applications import RateAppSuccess
+from tests.test_data.data_api.generator_applications import RateAppCompleted
+
 from env_configs.env_api import CLIENT_ID_ENV
 from env_configs.env_api import ENV
 from src.api_endpoits.wiki_endpoints import Wiki
@@ -36,9 +42,23 @@ def access_token_admin():
 
 
 @pytest.fixture()
-def access_token_diagnost():
+def access_token_diagnostician():
     payload = {
         "username": "diagnostqa",
+        "password": "524598",
+        "grant_type": "password",
+        "client_secret": CLIENT_ID_ENV,
+        "client_id": "azk"
+    }
+    url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
+    r = requests.post(url, data=payload)
+    return r.json()['access_token']
+
+
+@pytest.fixture()
+def access_token_sds():
+    payload = {
+        "username": "sdsqa",
         "password": "524598",
         "grant_type": "password",
         "client_secret": CLIENT_ID_ENV,
@@ -78,6 +98,20 @@ def access_token_designer():
 
 
 @pytest.fixture()
+def access_token_designer_helper():
+    payload = {
+        "username": "designer_helper",
+        "password": "524598",
+        "grant_type": "password",
+        "client_secret": CLIENT_ID_ENV,
+        "client_id": "azk"
+    }
+    url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
+    r = requests.post(url, data=payload)
+    return r.json()['access_token']
+
+
+@pytest.fixture()
 def access_token_assistant_vt_azk():
     payload = {
         "username": "qavt",
@@ -92,9 +126,18 @@ def access_token_assistant_vt_azk():
 
 
 @pytest.fixture()
-def id_user_diagnost(access_token_diagnost):
+def id_user_diagnostician(access_token_diagnostician):
     url = f"{ENV}/api/v1/users/me"
-    headers = {"Authorization": f"Bearer {access_token_diagnost}"}
+    headers = {"Authorization": f"Bearer {access_token_diagnostician}"}
+    r = requests.get(url, headers=headers)
+    print(r.json()['id'])
+    return r.json()["id"]
+
+
+@pytest.fixture()
+def id_user_sds(access_token_sds):
+    url = f"{ENV}/api/v1/users/me"
+    headers = {"Authorization": f"Bearer {access_token_sds}"}
     r = requests.get(url, headers=headers)
     print(r.json()['id'])
     return r.json()["id"]
@@ -121,6 +164,18 @@ def id_user_designer(access_token_designer):
 
 
 @pytest.fixture()
+def id_user_designer_helper(access_token_designer_helper):
+    url = f"{ENV}/api/v1/users/me"
+    headers = {"Authorization": f"Bearer {access_token_designer_helper}"}
+    r = requests.get(url, headers=headers)
+    r_json = r.json()
+    list_designer = []
+    print(list_designer)
+    list_designer.append(r_json['id'])
+    return list_designer
+
+
+@pytest.fixture()
 def id_user_assistant_azk_vt(access_token_assistant_vt_azk):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_assistant_vt_azk}"}
@@ -129,9 +184,50 @@ def id_user_assistant_azk_vt(access_token_assistant_vt_azk):
     return r.json()["id"]
 
 
+@pytest.fixture
+def about_me_sds(access_token_sds):
+    url = f"{ENV}/api/v1/users/me"
+    headers = {"Authorization": f"Bearer {access_token_sds}"}
+    r = requests.get(url, headers=headers)
+    print(r.json())
+    return r.json()
+
+
+@pytest.fixture
+def about_me_designer(access_token_designer):
+    url = f"{ENV}/api/v1/users/me"
+    headers = {"Authorization": f"Bearer {access_token_designer}"}
+    r = requests.get(url, headers=headers)
+    print(r.json())
+    return r.json()
+
+
+@pytest.fixture
+def about_me_designer_helper(access_token_designer_helper):
+    url = f"{ENV}/api/v1/users/me"
+    headers = {"Authorization": f"Bearer {access_token_designer_helper}"}
+    r = requests.get(url, headers=headers)
+    print(r.json())
+    return r.json()
+
+
+@pytest.fixture
+def about_me_assistant_azk_vt(access_token_assistant_vt_azk):
+    url = f"{ENV}/api/v1/users/me"
+    headers = {"Authorization": f"Bearer {access_token_assistant_vt_azk}"}
+    r = requests.get(url, headers=headers)
+    print(r.json())
+    return r.json()
+
+
+@pytest.fixture
+def builder_message():
+    return SendMessage()
+
+
 @pytest.fixture()
-def get_last_id_applications_vt(access_token_diagnost):
-    headers = {"Authorization": f"Bearer {access_token_diagnost}"}
+def get_last_id_applications_vt(access_token_diagnostician):
+    headers = {"Authorization": f"Bearer {access_token_diagnostician}"}
     payload = {
         "limit": 100,
         "page": 1,
@@ -181,9 +277,9 @@ def get_list_applications_vt(access_token_admin):
 
 
 @pytest.fixture()
-def id_app_vt(access_token_diagnost):
+def id_app_vt(access_token_diagnostician):
     url = f"{ENV}/api/v1/applications/repair?auto_equipment=true"
-    headers = {"Authorization": f"Bearer {access_token_diagnost}"}
+    headers = {"Authorization": f"Bearer {access_token_diagnostician}"}
     body = {
 
         "description": "test",
@@ -203,9 +299,9 @@ def id_app_vt(access_token_diagnost):
 
 
 @pytest.fixture()
-def get_json_about_app(access_token_diagnost, get_last_id_applications_vt):
+def get_json_about_app(access_token_diagnostician, get_last_id_applications_vt):
     url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}"
-    headers = {"Authorization": f"Bearer {access_token_diagnost}"}
+    headers = {"Authorization": f"Bearer {access_token_diagnostician}"}
     r = requests.get(url, headers=headers)
     r_json = r.json()['repair']['attachments']
     files_name = []
@@ -216,6 +312,27 @@ def get_json_about_app(access_token_diagnost, get_last_id_applications_vt):
             break
     print(files_name)
     return files_name
+
+
+@pytest.fixture
+def builder_application():
+    print(CreateAppVT().build())
+    return CreateAppVT()
+
+
+@pytest.fixture
+def builder_migration():
+    return Migration()
+
+
+@pytest.fixture
+def builder_rate_success():
+    return RateAppSuccess()
+
+
+@pytest.fixture
+def builder_rate_completed():
+    return RateAppCompleted()
 
 
 @pytest.fixture()
@@ -287,19 +404,19 @@ def get_date_start_from_last_app_vt(access_token_admin):
 
 
 @pytest.fixture()
-def take_prev_evaluations(access_token_admin, id_user_diagnost, get_date_start_from_last_app_vt):
+def take_prev_evaluations(access_token_admin, id_user_diagnostician, get_date_start_from_last_app_vt):
     url = f"{ENV}/api/v1/reports/report_user_rating_rae"
     headers = {"Authorization": f"Bearer {access_token_admin}"}
     payload = {
-                    "type": 1,
-                    "user_ids": [
-                        id_user_diagnost
-                    ],
-                    "date_start": f"{get_date_start_from_last_app_vt}",
-                    "date_end": f"{get_date_start_from_last_app_vt}",
-                    "companies": [],
-                    "score_type": []
-                }
+        "type": 1,
+        "user_ids": [
+            id_user_diagnostician
+        ],
+        "date_start": f"{get_date_start_from_last_app_vt}",
+        "date_end": f"{get_date_start_from_last_app_vt}",
+        "companies": [],
+        "score_type": []
+    }
     r = requests.post(url, headers=headers, json=payload)
     response = r.json()
     necessary_keys = [
@@ -315,11 +432,11 @@ def take_prev_evaluations(access_token_admin, id_user_diagnost, get_date_start_f
     prev_scores = []
     oops = "В таблице нет данных"
     if r.status_code == 200:
-        needs_diagnsotician = response['table'][0]
+        needs_diagnsotician = response['table_grouped'][0]
         for key in necessary_keys:
             score = needs_diagnsotician[key]
             prev_scores.append(score)
-        print(prev_scores)
+        print("Это значение перед оценкой", prev_scores)
         return prev_scores
     else:
         print(oops)
@@ -327,6 +444,8 @@ def take_prev_evaluations(access_token_admin, id_user_diagnost, get_date_start_f
 
 
 # NEXT FUNCTION FOR APPLICATION WIKI
+
+
 @pytest.fixture
 def builder_wiki():
     print(CreateWiki().build())
@@ -344,13 +463,13 @@ def get_last_id_wiki_rae(access_token_admin):
     url = f"{ENV}/api/v1/azk_wiki/list"
     headers = {"Authorization": f"Bearer {access_token_admin}"}
     payload = {
-            "limit": 20,
-            "page": 1,
-            "order_by": [
-                "-date_updated"
-            ],
-            "keywords": [],
-            "filters": {}
+        "limit": 20,
+        "page": 1,
+        "order_by": [
+            "-date_updated"
+        ],
+        "keywords": [],
+        "filters": {}
     }
 
     response = requests.post(url, headers=headers, json=payload)
@@ -385,6 +504,3 @@ def list_wiki_azk(access_token_admin):
     response = requests.post(url, headers=headers, json=payload)
     response_json = response.json()
     return response_json
-
-
-
