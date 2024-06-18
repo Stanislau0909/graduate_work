@@ -1,3 +1,5 @@
+
+
 class DataAuthorization:
 
     def data_for_login_admin(self):
