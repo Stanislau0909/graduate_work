@@ -14,6 +14,9 @@ class BaseEndpoints:
     def check_status_is_400_Bad_request(self, response):
         assert response.status_code == 400, f"Expected status code 400, but got {response.status_code}"
 
+    def check_status_is_401_Unauthorized(self, response):
+        assert response.status_code == 401, f"Expected status code 401, but got {response.status_code}"
+
     def check_status_is_403_Forbidden(self, response):
         assert response.status_code == 403, f"Expected status code 403, but got {response.status_code}"
 
