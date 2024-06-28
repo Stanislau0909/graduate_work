@@ -1,5 +1,5 @@
-ENV = "http://api-test.azkts.dev.nch.dpkapp.ru"
-CLIENT_ID_ENV = 'ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG'
+ENV = "https://demo.azkts.ru/api"
+CLIENT_ID_ENV = "ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG"
 
 DEV = "http://api-test.azkts.dev.nch.dpkapp.ru"
 CLIENT_ID_DEV = "ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG"
@@ -10,4 +10,5 @@ CLIENT_ID_QA = 'IAWdapiQvKRv7eGcSX3T5G2NpVbKTKnu'
 PROD = 'https://api.v2.azkts.ru'
 CLIENT_ID_PROD = 'ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG'
 
-DEMO = "any_way"
+DEMO = "https://demo.azkts.ru/api"
+CLIENT_ID_DEMO = "ebNLe1qZ5GfiAUJp74HUMLmkwRnTcucG"

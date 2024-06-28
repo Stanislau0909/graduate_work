@@ -31,7 +31,7 @@ class Applications(Base):
             'order_by': ['-date_start'],
             'type': 1
         }
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         print(response_json)
         return response
@@ -44,7 +44,7 @@ class Applications(Base):
             'order_by': ['-date_start'],
             'type': 2
         }
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         print(response_json)
         return response_json
@@ -64,7 +64,7 @@ class Applications(Base):
     def response_from_application(self, access_token_admin, get_last_id):
         url = f"{ENV}/api/v1/applications/{get_last_id}"
         headers = {"Authorization": f"Bearer {access_token_admin}"}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, verify=False)
         response_json = response.json()
         return response_json
 
@@ -90,21 +90,21 @@ class Applications(Base):
     def create_app(self, jwt, payload):  # return app's id
         url = f"{ENV}/api/v1/applications/repair?auto_equipment=true"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         return response
 
     def attach_with_creating_app(self, jwt, file, get_last_id_applications_vt):
         url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}/attach"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers, files=file)
+        response = requests.post(url, headers=headers, files=file, verify=False)
         return response
 
     def send_sms_in_chat(self, get_last_id_applications_vt, jwt,
                          payload):  # return id_app, id_sms, user_id, sender_type, message, timestamp
         url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}/chat"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         return response
 
     def check_value_field_message(self, payload, response_from_server):
@@ -115,7 +115,7 @@ class Applications(Base):
     def about_me(self, token):
         url = f"{ENV}/api/v1/users/me"
         headers = {"Authorization": f"Bearer {token}"}
-        r = requests.get(url, headers=headers)
+        r = requests.get(url, headers=headers, verify=False)
         self.response_json = r.json()
         return self.response_json['id']
 
@@ -130,7 +130,7 @@ class Applications(Base):
         # return id_app, id_sms, user_id, sender_type, message, timestamp ,filename , if this file pdf then file_weight
         url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}/chat_with_attachment?application_id={get_last_id_applications_vt}&user_id={id_user}&sender_type={sender_type}&message=&is_attachment=false"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers, files=file)
+        response = requests.post(url, headers=headers, files=file, verify=False)
         return response
 
     def info_about_attaches_for_chat_and_compare(self, payload, response_from_server):
@@ -141,7 +141,7 @@ class Applications(Base):
     def send_file_in_chat_from_specialist(self, jwt, file, get_last_id_applications_vt, id_user):
         url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}/chat_with_attachment?application_id={get_last_id_applications_vt}&user_id={id_user}&sender_type=false&message=&is_attachment=false"
         headers = {"Authorization": f"Bearer {jwt}"}
-        self.response = requests.post(url, headers=headers, files=file)
+        self.response = requests.post(url, headers=headers, files=file, verify=False)
         self.response_json = self.response.json()
 
     def check_file_name(self, file_name):
@@ -150,7 +150,7 @@ class Applications(Base):
     def assign_implementer(self, get_last_id_applications_vt, jwt, payload):  # in payload send implementer's id
         url = f"{ENV}/api/v1/applications/repair/{get_last_id_applications_vt}"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.put(url, headers=headers, json=payload)
+        response = requests.put(url, headers=headers, json=payload, verify=False)
         # response_json = response.json()
         return response  # return short info about app
 
@@ -170,7 +170,7 @@ class Applications(Base):
         url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}/designers"
         headers = {"Authorization": f"Bearer {jwt}"}
         payload = {"ids": id_designer}
-        response = requests.put(url, headers=headers, json=payload)
+        response = requests.put(url, headers=headers, json=payload, verify=False)
         return response
 
     def check_result_true_after_adding_designer(self, response_from_server):
@@ -183,7 +183,7 @@ class Applications(Base):
             "application_id": id_app,
             "user_id": str(id_user_who_should_delete[0])
         }
-        response = requests.put(url, headers=headers, json=payload)
+        response = requests.put(url, headers=headers, json=payload, verify=False)
         return response
 
     def delete_participants_type_specialist(self, jwt, id_user_who_should_delete, id_app):
@@ -193,7 +193,7 @@ class Applications(Base):
             "application_id": id_app,
             "user_id": str(id_user_who_should_delete)
         }
-        response = requests.put(url, headers=headers, json=payload)
+        response = requests.put(url, headers=headers, json=payload, verify=False)
         return response
 
     def check_deleted_member(self, payload, response_from_server):
@@ -222,13 +222,13 @@ class Applications(Base):
         url = f"{ENV}/api/v1/applications/repair/{get_last_id_applications_vt}"
         headers = {"Authorization": f"Bearer {jwt}"}
         payload = {"status": 4}
-        response = requests.put(url, headers=headers, json=payload)
+        response = requests.put(url, headers=headers, json=payload, verify=False)
         return response
 
     def adding_assistant_in_app_side_azk(self, jwt, get_last_id_applications_vt, id_user_assistant_azk_vt):
         url = f"{ENV}/api/v1/applications/repair/{get_last_id_applications_vt}/assistants/{id_user_assistant_azk_vt}"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers)
+        response = requests.post(url, headers=headers, verify=False)
         return response
 
     def check_assistant_side_azk_after_adding(self, check_member_in_application):
@@ -250,7 +250,7 @@ class Applications(Base):
     def migration_application(self, get_last_id_app, payload, jwt):
         url = f"{ENV}/api/v1/applications/{get_last_id_app}/migration"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         return response
 
     def fields_for_compare_after_migration(self, response_vt, response_zch):
@@ -294,7 +294,7 @@ class Applications(Base):
             'id': get_last_id,
             'status': 6
         }
-        response = requests.put(url, headers=headers, json=payload)
+        response = requests.put(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         return response
 
@@ -304,7 +304,7 @@ class Applications(Base):
         headers = {"Authorization": f"Bearer {jwt}"}
         payload = {"application_id": get_last_id_applications_vt,
                    "score_type": score_type}
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         response_json = response
         print(score_type, response_json)
         return response
@@ -322,7 +322,7 @@ class Applications(Base):
             "companies": [],
             "score_type": []
         }
-        r = requests.post(url, headers=headers, json=payload)
+        r = requests.post(url, headers=headers, json=payload, verify=False)
         response = r.json()
         needs_diagnsotician = response['table_grouped'][0]
         necessary_keys = [
@@ -361,14 +361,14 @@ class Applications(Base):
         headers = {"Authorization": f"Bearer {jwt}"}
         payload = {"id": get_last_id_applications_vt,
                    "status": status}
-        response = requests.put(url, headers=headers, json=payload)
+        response = requests.put(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         return response
 
     def rate_app_from_diagnostician(self, jwt, payload):
         url = f"{ENV}/api/v1/reports/score_application/diagnostician"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         return response
 
     def compare_common_keys_after_rate_by_diagnostician(self, payload, response_from_server):
@@ -390,14 +390,14 @@ class Applications(Base):
     def get_download_link_application(self, access_token_admin, get_last_id_application):
         url = f"{ENV}/api/v2/applications/{get_last_id_application}/get_download_link"
         headers = {"Authorization": f"Bearer {access_token_admin}"}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, verify=False)
         response_json = response.json()
         print(response_json.get('link_id'))
         return response
 
     def paste_link_for_download_pdf(self, get_download_link_app):
         url = f"{ENV}/api/v2/applications/download/{get_download_link_app}/?format=pdf&lang=ru"
-        response = requests.get(url)
+        response = requests.get(url, verify=False)
         downloaded_file = zipfile.ZipFile(io.BytesIO(response.content))
         path_to_file = os.getcwd()
         destination_directory = f"{path_to_file}\\for_downloaded_files_app_pdf"
@@ -406,7 +406,7 @@ class Applications(Base):
 
     def paste_link_for_download_html(self, get_download_link_html):
         url = f"{ENV}/api/v2/applications/download/{get_download_link_html}/?format=html&lang=ru"
-        response = requests.get(url)
+        response = requests.get(url, verify=False)
         downloaded_file = zipfile.ZipFile(io.BytesIO(response.content))
         path_to_file = os.getcwd()
         destination_directory = f"{path_to_file}\\for_downloaded_file_app_html"
@@ -419,7 +419,7 @@ class Applications(Base):
         payload = {"limit": 1,
                    "order_by": ["-date_updated"]
                    }
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         list_with_file_name = []
         for attachment in response_json['data'][0]['attachments']:
@@ -531,3 +531,9 @@ class Applications(Base):
 
     def close_app_from_admin(self):
         pass
+
+    def read_sms(self, id_app, id_sms, jwt):
+        url = f'{ENV}/api/v1/applications/{id_app}/chat/{id_sms}'
+        headers = {"Authorization": f"Bearer {jwt}"}
+        response = requests.get(url, headers=headers, verify=False)
+        return response

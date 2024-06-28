@@ -672,3 +672,41 @@ class TestApplication:
         table_of_application = self.app.list_application_vt(access_token_admin=access_token_diagnostician).json()
         status_app = self.app.app_last_status(table_of_application)
         assert status_app == 8
+
+    def test_read_sms_by_diagnostician(self, access_token_diagnostician, builder_application,
+                                       access_token_specialist, id_user_specvt,
+                                       builder_message):
+        create_app = self.app.create_app(jwt=access_token_diagnostician, payload=builder_application.build())
+        assign_implementer = self.app.assign_implementer(jwt=access_token_specialist,
+                                                         get_last_id_applications_vt=create_app.json()['id'],
+                                                         payload=self.data.data_id_implementer(
+                                                             id_user_specvt=id_user_specvt))
+        self.app.send_sms_in_chat(jwt=access_token_specialist, get_last_id_applications_vt=create_app.json()['id'],
+                                  payload=builder_message.set_application_id(create_app.json()['id']).set_user_id(
+                                      id_user_specvt).set_sender_type(False).build())
+        list_with_unread_sms = self.app.list_application_vt(access_token_admin=access_token_diagnostician)
+        check = list_with_unread_sms.json()['data'][0]['unread_messages']
+        assert check > 0
+        response_app = self.app.response_from_application(access_token_admin=access_token_diagnostician,
+                                           get_last_id=create_app.json()['id'])
+        id_last_message = response_app['repair']['last_messages'][0]['id']
+        self.app.read_sms(jwt=access_token_diagnostician, id_app=create_app.json()['id'], id_sms=id_last_message)
+        list_with_unread_sms = self.app.list_application_vt(access_token_admin=access_token_diagnostician)
+        open_app_by_diagnostician = list_with_unread_sms.json()['data'][0]['unread_messages']
+        assert open_app_by_diagnostician == 0
+
+    def test_read_sms_by_specialist(self):
+        pass
+
+    def test_read_sms_by_designer(self):
+        pass
+
+    def test_check_counter_sms(self):
+        pass
+
+    def test_check_counter_unrated(self):
+        pass
+
+
+
+
