@@ -10,11 +10,18 @@ from tests.test_data.data_api.generator_applications import CreateAppVT
 from tests.test_data.data_api.generator_applications import Migration
 from tests.test_data.data_api.generator_applications import RateAppSuccess
 from tests.test_data.data_api.generator_applications import RateAppCompleted
+from tests.test_data.data_api.generator_authorization import GeneratorLogins
 
 from env_configs.env_api import CLIENT_ID_ENV
 from env_configs.env_api import ENV
 from src.api_endpoits.wiki_endpoints import Wiki
 from self import self
+
+
+# fixture for application auth
+@pytest.fixture
+def builder_logins():
+    return GeneratorLogins()
 
 
 @pytest.fixture(scope='function')
@@ -37,7 +44,7 @@ def access_token_admin():
         "client_id": "azk"
     }
     url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
-    r = requests.post(url, data=payload)
+    r = requests.post(url, data=payload, verify=False)
     return r.json()['access_token']
 
 
@@ -51,7 +58,7 @@ def access_token_diagnostician():
         "client_id": "azk"
     }
     url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
-    r = requests.post(url, data=payload)
+    r = requests.post(url, data=payload, verify=False)
     return r.json()['access_token']
 
 
@@ -65,7 +72,7 @@ def access_token_sds():
         "client_id": "azk"
     }
     url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
-    r = requests.post(url, data=payload)
+    r = requests.post(url, data=payload, verify=False)
     return r.json()['access_token']
 
 
@@ -79,7 +86,7 @@ def access_token_specialist():
         "client_id": "azk"
     }
     url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
-    r = requests.post(url, data=payload)
+    r = requests.post(url, data=payload, verify=False)
     return r.json()['access_token']
 
 
@@ -93,21 +100,21 @@ def access_token_designer():
         "client_id": "azk"
     }
     url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
-    r = requests.post(url, data=payload)
+    r = requests.post(url, data=payload, verify=False)
     return r.json()['access_token']
 
 
 @pytest.fixture()
 def access_token_designer_helper():
     payload = {
-        "username": "designer_helper",
+        "username": "d_helper",
         "password": "524598",
         "grant_type": "password",
         "client_secret": CLIENT_ID_ENV,
         "client_id": "azk"
     }
     url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
-    r = requests.post(url, data=payload)
+    r = requests.post(url, data=payload, verify=False)
     return r.json()['access_token']
 
 
@@ -121,7 +128,7 @@ def access_token_assistant_vt_azk():
         "client_id": "azk"
     }
     url = f"{ENV}/auth/realms/azkts/protocol/openid-connect/token"
-    r = requests.post(url, data=payload)
+    r = requests.post(url, data=payload, verify=False)
     return r.json()['access_token']
 
 
@@ -129,7 +136,7 @@ def access_token_assistant_vt_azk():
 def id_user_diagnostician(access_token_diagnostician):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_diagnostician}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     print(r.json()['id'])
     return r.json()["id"]
 
@@ -138,7 +145,7 @@ def id_user_diagnostician(access_token_diagnostician):
 def id_user_sds(access_token_sds):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_sds}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     print(r.json()['id'])
     return r.json()["id"]
 
@@ -147,7 +154,7 @@ def id_user_sds(access_token_sds):
 def id_user_specvt(access_token_specialist):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_specialist}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     return r.json()["id"]
 
 
@@ -155,7 +162,7 @@ def id_user_specvt(access_token_specialist):
 def id_user_designer(access_token_designer):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_designer}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     r_json = r.json()
     list_designer = []
     print(list_designer)
@@ -167,7 +174,7 @@ def id_user_designer(access_token_designer):
 def id_user_designer_helper(access_token_designer_helper):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_designer_helper}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     r_json = r.json()
     list_designer = []
     print(list_designer)
@@ -179,7 +186,7 @@ def id_user_designer_helper(access_token_designer_helper):
 def id_user_assistant_azk_vt(access_token_assistant_vt_azk):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_assistant_vt_azk}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     print(r.json()['id'])
     return r.json()["id"]
 
@@ -188,7 +195,7 @@ def id_user_assistant_azk_vt(access_token_assistant_vt_azk):
 def about_me_sds(access_token_sds):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_sds}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     print(r.json())
     return r.json()
 
@@ -197,7 +204,7 @@ def about_me_sds(access_token_sds):
 def about_me_designer(access_token_designer):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_designer}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     print(r.json())
     return r.json()
 
@@ -206,7 +213,7 @@ def about_me_designer(access_token_designer):
 def about_me_designer_helper(access_token_designer_helper):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_designer_helper}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     print(r.json())
     return r.json()
 
@@ -215,7 +222,7 @@ def about_me_designer_helper(access_token_designer_helper):
 def about_me_assistant_azk_vt(access_token_assistant_vt_azk):
     url = f"{ENV}/api/v1/users/me"
     headers = {"Authorization": f"Bearer {access_token_assistant_vt_azk}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     print(r.json())
     return r.json()
 
@@ -239,7 +246,7 @@ def get_last_id_applications_vt(access_token_diagnostician):
         "type": 1
     }
     url = f"{ENV}/api/v1/applications/list"
-    r = requests.post(url, headers=headers, json=payload)
+    r = requests.post(url, headers=headers, json=payload, verify=False)
     print(r.status_code)
     response = r.json()['data']
 
@@ -266,7 +273,7 @@ def get_list_applications_vt(access_token_admin):
         "type": 1
     }
     url = f"{ENV}/api/v1/applications/list"
-    r = requests.post(url, headers=headers, json=payload)
+    r = requests.post(url, headers=headers, json=payload, verify=False)
     response = r.json()['data']
     application_total_list = []
 
@@ -302,7 +309,7 @@ def id_app_vt(access_token_diagnostician):
 def get_json_about_app(access_token_diagnostician, get_last_id_applications_vt):
     url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}"
     headers = {"Authorization": f"Bearer {access_token_diagnostician}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     r_json = r.json()['repair']['attachments']
     files_name = []
 
@@ -339,7 +346,7 @@ def builder_rate_completed():
 def check_member_in_application(get_last_id_applications_vt, access_token_admin):
     url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}"
     headers = {"Authorization": f"Bearer {access_token_admin}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     r_json = r.json()['repair']['members']
     people_with_need_role = []
     for member in r_json:
@@ -354,7 +361,7 @@ def check_member_in_application(get_last_id_applications_vt, access_token_admin)
 def get_messages_in_chat(get_last_id_applications_vt, access_token_admin):
     url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}"
     headers = {"Authorization": f"Bearer {access_token_admin}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     data = r.json()
     messages = []
     for message in data['repair']['last_messages']:
@@ -368,7 +375,7 @@ def get_messages_in_chat(get_last_id_applications_vt, access_token_admin):
 def get_sid(get_last_id_applications_vt, access_token_admin):
     url = f"{ENV}/api/v1/applications/{get_last_id_applications_vt}"
     headers = {"Authorization": f"Bearer {access_token_admin}"}
-    r = requests.get(url, headers=headers)
+    r = requests.get(url, headers=headers, verify=False)
     data = r.json()
     sid = data['repair']['sid']
     print(sid)
@@ -389,7 +396,7 @@ def get_date_start_from_last_app_vt(access_token_admin):
         "type": 1
     }
     url = f"{ENV}/api/v1/applications/list"
-    r = requests.post(url, headers=headers, json=payload)
+    r = requests.post(url, headers=headers, json=payload, verify=False)
     response = r.json()['data']
     date_start_app = response[0]['date_start']
     clear_date = []
@@ -417,7 +424,7 @@ def take_prev_evaluations(access_token_admin, id_user_diagnostician, get_date_st
         "companies": [],
         "score_type": []
     }
-    r = requests.post(url, headers=headers, json=payload)
+    r = requests.post(url, headers=headers, json=payload, verify=False)
     response = r.json()
     necessary_keys = [
         'lack_of_knowledge_experience',
@@ -472,7 +479,7 @@ def get_last_id_wiki_rae(access_token_admin):
         "filters": {}
     }
 
-    response = requests.post(url, headers=headers, json=payload)
+    response =  requests.post(url, headers=headers, json=payload, verify=False)
     response_json = response.json()
     last = [i.get('id') for i in response_json['data']]
     print(last[0])
@@ -501,6 +508,6 @@ def list_wiki_azk(access_token_admin):
     payload = {"limit": 1,
                "order_by": ["-date_updated"]
                }
-    response = requests.post(url, headers=headers, json=payload)
+    response =  requests.post(url, headers=headers, json=payload, verify=False)
     response_json = response.json()
     return response_json

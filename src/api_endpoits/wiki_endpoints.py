@@ -22,7 +22,7 @@ class Wiki(Base):
     def create_wiki_manual(self, jwt, payload):
         url = f"{ENV}/api/v1/azk_wiki"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         print(response_json)
         print(os.getcwd())
@@ -34,7 +34,7 @@ class Wiki(Base):
     def adding_attach_in_wiki(self, jwt, get_last_id_wiki_rae, file):
         url = f"{ENV}/api/v1/azk_wiki/{get_last_id_wiki_rae}/attach"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers, files=file)
+        response = requests.post(url, headers=headers, files=file, verify=False)
         response_json = response.json()
         print(response_json)
         return response
@@ -45,7 +45,7 @@ class Wiki(Base):
         payload = {"limit": 1,
                    "order_by": ["-date_updated"]
                    }
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         id_files = [id_attach.get('id') for id_attach in response_json['data'][0]['attachments']]
         return id_files
@@ -56,7 +56,7 @@ class Wiki(Base):
         payload = {"limit": 1,
                    "order_by": ["-date_updated"]
                    }
-        self.response = requests.post(url, headers=headers, json=payload)
+        self.response = requests.post(url, headers=headers, json=payload, verify=False)
         self.response_json = self.response.json()
         id_files = [id_attach.get('id') for id_attach in self.response_json['data'][0]['attachments']]
         return id_files
@@ -64,7 +64,7 @@ class Wiki(Base):
     def delete_files_in_wiki(self, jwt, get_last_id_wiki_rae, id_attach_in_wiki):
         url = f"{ENV}/api/v1/azk_wiki/{get_last_id_wiki_rae}/attach/{id_attach_in_wiki}"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.delete(url, headers=headers)
+        response = requests.delete(url, headers=headers, verify=False)
         response_json = response.json()
         print(response_json['id'])
         return response
@@ -72,7 +72,7 @@ class Wiki(Base):
     def edit_fields_wiki(self, jwt, payload, get_last_id_wiki_rae):
         url = f"{ENV}/api/v1/azk_wiki/{get_last_id_wiki_rae}"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.put(url, headers=headers, json=payload)
+        response = requests.put(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         print(response_json)
         return response
@@ -80,7 +80,7 @@ class Wiki(Base):
     def check_search_input(self, jwt, payload):
         url = f"{ENV}/api/v1/azk_wiki/list"
         headers = {"Authorization": f"Bearer {jwt}"}
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, verify=False)
         response_json = response.json()
         # print(self.response_json)
         return response
@@ -102,7 +102,7 @@ class Wiki(Base):
     def get_download_link_wiki_azk(self, access_token_admin, get_last_id_wiki_rae):
         url = f"{ENV}/api/v2/wiki/{get_last_id_wiki_rae}/get_download_link"
         headers = {"Authorization": f"Bearer {access_token_admin}"}
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, verify=False)
         response_json = response.json()
         print(response_json.get('link_id'))
         return response
@@ -133,7 +133,7 @@ class Wiki(Base):
         payload = {"limit": 1,
                    "order_by": ["-date_updated"]
                    }
-        self.response = requests.post(url, headers=headers, json=payload)
+        self.response = requests.post(url, headers=headers, json=payload, verify=False)
         self.response_json = self.response.json()
         list_with_file_name = []
         for attachment in self.response_json['data'][0]['attachments']:
